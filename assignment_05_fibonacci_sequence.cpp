@@ -51,3 +51,77 @@
 #include <iostream>
 using namespace std;
 
+void printFibonacci(int n) {
+    if (n <= 0) {
+        cout << "Error: Number of terms must be a positive integer." << endl;
+        return;
+    }
+    
+    cout << "Fibonacci sequence: ";
+    
+    if (n >= 1) {
+        cout << 0 << " ";
+    }
+    if (n >= 2) {
+        cout << 1 << " ";
+    }
+    
+    long long t1 = 0;
+    long long t2 = 1;
+    long long nextTerm;
+    
+    for (int i = 3; i <= n; i++) {
+        nextTerm = t1 + t2;
+        cout << nextTerm << " ";
+        t1 = t2;
+        t2 = nextTerm;
+    }
+    cout << endl;
+}
+
+void checkFibonacci(long long num) {
+    if (num < 0) {
+        cout << num << " is NOT a Fibonacci number." << endl;
+        return;
+    }
+    
+    if (num == 0 || num == 1) {
+        cout << num << " is a Fibonacci number." << endl;
+        return;
+    }
+    
+    long long t1 = 0;
+    long long t2 = 1;
+    long long nextTerm = t1 + t2;
+    
+    while (nextTerm < num) {
+        t1 = t2;
+        t2 = nextTerm;
+        nextTerm = t1 + t2;
+    }
+    
+    if (nextTerm == num) {
+        cout << num << " is a Fibonacci number." << endl;
+    } else {
+        cout << num << " is NOT a Fibonacci number." << endl;
+    }
+}
+
+int main() {
+    
+    int n;
+    cout << "=== PART A: Print the First N Terms ===" << endl;
+    cout << "How many terms? ";
+    cin >> n;
+    
+    printFibonacci(n);
+    
+    long long numberToCheck;
+    cout << "\n=== PART B: Check if a Number Belongs to the Sequence ===" << endl;
+    cout << "Enter a number to check: ";
+    cin >> numberToCheck;
+    
+    checkFibonacci(numberToCheck);
+    
+    return 0;
+}
